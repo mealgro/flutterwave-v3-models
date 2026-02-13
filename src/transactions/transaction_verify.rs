@@ -1,5 +1,6 @@
 use crate::fwcall::{FwCall, ToFwCall};
-use std::borrow::Cow;
+use serde::{Deserialize, Serialize};
+use std::{borrow::Cow, collections::HashMap};
 use validator::Validate;
 
 #[derive(Debug, Serialize, Deserialize, Validate)]
@@ -12,14 +13,14 @@ pub struct VerifyTransByTxRefReq {
     pub tx_ref: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VerifyTransRes {
     pub status: String,
     pub message: String,
     pub data: VerifyTransResData,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VerifyTransResData {
     pub id: i64,
     pub tx_ref: String,
@@ -44,7 +45,7 @@ pub struct VerifyTransResData {
     pub customer: Customer,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Card {
     #[serde(rename = "first_6digits")]
     pub first_6_digits: String,
@@ -58,7 +59,7 @@ pub struct Card {
     pub expiry: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Customer {
     pub id: i64,
     pub name: String,
