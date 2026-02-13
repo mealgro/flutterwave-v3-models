@@ -1,7 +1,6 @@
-use serde::{Deserialize, Serialize};
-use validator::Validate;
 use crate::fwcall::{FwCall, ToFwCall};
 use std::borrow::Cow;
+use validator::Validate;
 
 #[derive(Debug, Serialize, Deserialize, Validate)]
 pub struct VerifyTransByIdReq {
@@ -12,7 +11,6 @@ pub struct VerifyTransByIdReq {
 pub struct VerifyTransByTxRefReq {
     pub tx_ref: String,
 }
-
 
 #[derive(Serialize, Deserialize)]
 pub struct VerifyTransRes {
@@ -41,7 +39,7 @@ pub struct VerifyTransResData {
     pub created_at: String,
     pub account_id: i64,
     pub card: Card,
-    pub meta: Option<String>,
+    pub meta: Option<HashMap<String, serde_json::Value>>,
     pub amount_settled: f64,
     pub customer: Customer,
 }
